@@ -5,9 +5,9 @@ package bibliotheque
 import org.junit.*
 import grails.test.mixin.*
 
-@TestFor(LivreController)
-@Mock(Livre)
-class LivreControllerTests {
+@TestFor(PanierController)
+@Mock(Panier)
+class PanierControllerTests {
 
     def populateValidParams(params) {
         assert params != null
@@ -17,139 +17,139 @@ class LivreControllerTests {
 
     void testIndex() {
         controller.index()
-        assert "/livre/list" == response.redirectedUrl
+        assert "/panier/list" == response.redirectedUrl
     }
 
     void testList() {
 
         def model = controller.list()
 
-        assert model.livreInstanceList.size() == 0
-        assert model.livreInstanceTotal == 0
+        assert model.panierInstanceList.size() == 0
+        assert model.panierInstanceTotal == 0
     }
 
     void testCreate() {
         def model = controller.create()
 
-        assert model.livreInstance != null
+        assert model.panierInstance != null
     }
 
     void testSave() {
         controller.save()
 
-        assert model.livreInstance != null
-        assert view == '/livre/create'
+        assert model.panierInstance != null
+        assert view == '/panier/create'
 
         response.reset()
 
         populateValidParams(params)
         controller.save()
 
-        assert response.redirectedUrl == '/livre/show/1'
+        assert response.redirectedUrl == '/panier/show/1'
         assert controller.flash.message != null
-        assert Livre.count() == 1
+        assert Panier.count() == 1
     }
 
     void testShow() {
         controller.show()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/livre/list'
+        assert response.redirectedUrl == '/panier/list'
 
         populateValidParams(params)
-        def livre = new Livre(params)
+        def panier = new Panier(params)
 
-        assert livre.save() != null
+        assert panier.save() != null
 
-        params.id = livre.id
+        params.id = panier.id
 
         def model = controller.show()
 
-        assert model.livreInstance == livre
+        assert model.panierInstance == panier
     }
 
     void testEdit() {
         controller.edit()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/livre/list'
+        assert response.redirectedUrl == '/panier/list'
 
         populateValidParams(params)
-        def livre = new Livre(params)
+        def panier = new Panier(params)
 
-        assert livre.save() != null
+        assert panier.save() != null
 
-        params.id = livre.id
+        params.id = panier.id
 
         def model = controller.edit()
 
-        assert model.livreInstance == livre
+        assert model.panierInstance == panier
     }
 
     void testUpdate() {
         controller.update()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/livre/list'
+        assert response.redirectedUrl == '/panier/list'
 
         response.reset()
 
         populateValidParams(params)
-        def livre = new Livre(params)
+        def panier = new Panier(params)
 
-        assert livre.save() != null
+        assert panier.save() != null
 
         // test invalid parameters in update
-        params.id = livre.id
+        params.id = panier.id
         //TODO: add invalid values to params object
 
         controller.update()
 
-        assert view == "/livre/edit"
-        assert model.livreInstance != null
+        assert view == "/panier/edit"
+        assert model.panierInstance != null
 
-        livre.clearErrors()
+        panier.clearErrors()
 
         populateValidParams(params)
         controller.update()
 
-        assert response.redirectedUrl == "/livre/show/$livre.id"
+        assert response.redirectedUrl == "/panier/show/$panier.id"
         assert flash.message != null
 
         //test outdated version number
         response.reset()
-        livre.clearErrors()
+        panier.clearErrors()
 
         populateValidParams(params)
-        params.id = livre.id
+        params.id = panier.id
         params.version = -1
         controller.update()
 
-        assert view == "/livre/edit"
-        assert model.livreInstance != null
-        assert model.livreInstance.errors.getFieldError('version')
+        assert view == "/panier/edit"
+        assert model.panierInstance != null
+        assert model.panierInstance.errors.getFieldError('version')
         assert flash.message != null
     }
 
     void testDelete() {
         controller.delete()
         assert flash.message != null
-        assert response.redirectedUrl == '/livre/list'
+        assert response.redirectedUrl == '/panier/list'
 
         response.reset()
 
         populateValidParams(params)
-        def livre = new Livre(params)
+        def panier = new Panier(params)
 
-        assert livre.save() != null
-        assert Livre.count() == 1
+        assert panier.save() != null
+        assert Panier.count() == 1
 
-        params.id = livre.id
+        params.id = panier.id
 
         controller.delete()
 
-        assert Livre.count() == 0
-        assert Livre.get(livre.id) == null
-        assert response.redirectedUrl == '/livre/list'
+        assert Panier.count() == 0
+        assert Panier.get(panier.id) == null
+        assert response.redirectedUrl == '/panier/list'
     }
 }
