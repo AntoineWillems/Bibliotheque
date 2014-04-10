@@ -20,6 +20,14 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<fieldset class="form">
+			    <g:form action="list" method="GET">
+			        <div class="fieldcontain">
+			            <label for="query">Search for title:</label>
+			            <g:textField name="query" value="${params.query}"/>
+			        </div>
+			    </g:form>
+			</fieldset>
 			<table>
 				<thead>
 					<tr>
@@ -33,13 +41,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				Recherche <INPUT type=text name="recherche"> 
-				<SELECT name="fonction">
-					<OPTION VALUE="titre">${message(code: 'livre.titre.label', default: 'Titre')}</OPTION>
-					<OPTION VALUE="titre1">${message(code: 'livre.titre.label', default: 'Titre')}</OPTION>
-				</SELECT>
-				
-				
+			
 				<g:each in="${livreInstanceList}" status="i" var="livreInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
