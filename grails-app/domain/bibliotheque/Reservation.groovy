@@ -5,6 +5,7 @@ class Reservation {
 	int code
 	String dateReservation
 	
+	//static belongsTo = Livre
 	static hasMany = [livres:Livre]
 	
     static constraints = {
