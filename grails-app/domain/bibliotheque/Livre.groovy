@@ -15,9 +15,9 @@ class Livre {
 	}
 	
     static constraints = {
-		titre unique:true, blank:false 
-		nombreExemplairesDisponible min:0, blank:false
-		nombreExemplaires min:0 , blank:false
+		titre blank:true 
+		nombreExemplairesDisponible min:0, blank:true
+		nombreExemplaires min:0 , blank:true
 		
     }
 }
