@@ -99,4 +99,16 @@ class LivreController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def createBDD(){
+		Livre l
+		def tableau
+		def counter = 0
+		File f =new File("C://Users/Willems/Documents/Cours/JEE/Bibliotheque/bdd.csv")
+		
+		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
+			System.out.println(tokens[3])
+			l = new Livre(titre:tokens[3]).save()
+		}
+	}
 }

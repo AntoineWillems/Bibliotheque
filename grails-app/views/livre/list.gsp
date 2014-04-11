@@ -33,6 +33,13 @@
 					</tr>
 				</thead>
 				<tbody>
+				Recherche <INPUT type=text name="recherche"> 
+				<SELECT name="fonction">
+					<OPTION VALUE="titre">${message(code: 'livre.titre.label', default: 'Titre')}</OPTION>
+					<OPTION VALUE="titre1">${message(code: 'livre.titre.label', default: 'Titre')}</OPTION>
+				</SELECT>
+				
+				
 				<g:each in="${livreInstanceList}" status="i" var="livreInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
