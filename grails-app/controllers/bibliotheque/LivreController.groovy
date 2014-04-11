@@ -10,9 +10,18 @@ class LivreController {
         redirect(action: "list", params: params)
     }
 
+
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [livreInstanceList: Livre.list(params), livreInstanceTotal: Livre.count()]
+		
+	
+		def livreList = Livre.createCriteria().list (params) {
+			if ( params.query ) {
+				ilike("titre", "%${params.query}%")
+			}
+		}
+		
+		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
     }
 
     def create() {
@@ -99,16 +108,4 @@ class LivreController {
             redirect(action: "show", id: id)
         }
     }
-	
-	def createBDD(){
-		Livre l
-		def tableau
-		def counter = 0
-		File f =new File("C://Users/Willems/Documents/Cours/JEE/Bibliotheque/bdd.csv")
-		
-		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
-			System.out.println(tokens[3])
-			l = new Livre(titre:tokens[3]).save()
-		}
-	}
 }
