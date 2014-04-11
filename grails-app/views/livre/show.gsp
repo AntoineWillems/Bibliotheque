@@ -22,7 +22,6 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list livre">
-			
 				<g:if test="${livreInstance?.titre}">
 				<li class="fieldcontain">
 					<span id="titre-label" class="property-label"><g:message code="livre.titre.label" default="Titre" /></span>
@@ -71,7 +70,7 @@
 					
 				</li>
 				</g:if>
-			
+				
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

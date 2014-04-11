@@ -10,9 +10,18 @@ class LivreController {
         redirect(action: "list", params: params)
     }
 
+
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [livreInstanceList: Livre.list(params), livreInstanceTotal: Livre.count()]
+		
+	
+		def livreList = Livre.createCriteria().list (params) {
+			if ( params.query ) {
+				ilike("titre", "%${params.query}%")
+			}
+		}
+		
+		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
     }
 
     def create() {

@@ -14,7 +14,6 @@ class Livre {
 		nombreExemplairesDisponible--;
 	}
 	
-	
     static constraints = {
 		titre unique:true, blank:false 
 		nombreExemplairesDisponible min:0, blank:false
