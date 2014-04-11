@@ -65,5 +65,8 @@
 				<g:paginate total="${livreInstanceTotal}" />
 			</div>
 		</div>
+		<div class="affichePanier">
+			
+		</div>
 	</body>
 </html>
