@@ -16,18 +16,17 @@ class BootStrap {
 			type = new TypeDocument(intitule:tokens[1]).save()
 			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).save()
 			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteur(new Auteur(nom:"Will", prenom:"Ant")).save()
-			/*
+			def auteurExist = false
 			listAuteur.each{ auteur1 ->
 				if(auteur1.getNom()==tokens[4]){
 					auteur1.addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1))
+					auteurExist = true
 				}
 			}
-			*/
-			
-			
-			
-			auteur = new Auteur(nom:tokens[4], prenom:tokens[5]).addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)).save()
-			//listAuteur.add(auteur)
+			if(auteurExist==false){
+				auteur = new Auteur(nom:tokens[4], prenom:tokens[5]).addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)).save()
+				listAuteur.add(auteur)
+			}
 		}
     }
     def destroy = {
