@@ -25,6 +25,7 @@
 			        <div class="fieldcontain">
 			            <label for="query">Search for title:</label>
 			            <g:textField name="query" value="${params.query}"/>
+			            <g:select name="typeSearch" from="${['Titre', 'Auteur']}" />
 			        </div>
 			    </g:form>
 			</fieldset>
@@ -53,8 +54,8 @@
 					
 						<td>${fieldValue(bean: livreInstance, field: "nombreExemplaires")}</td>
 						
-						<g:each in="${livreInstance.auteurs}" var="a">
-								<td>${fieldValue(bean: livreInstance.auteurs, field: "nom")}</td>
+						<g:each in="${livreInstance.auteurs}" var="auteur">
+								<td>${fieldValue(bean: auteur, field: "nom")}</td>
 						</g:each>
 						
 					</tr>

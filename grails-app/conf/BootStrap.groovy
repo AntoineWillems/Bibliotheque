@@ -9,7 +9,7 @@ class BootStrap {
 		Auteur auteur
 		TypeDocument type
 		def listAuteur = []
-		File f =new File("C://Users/Willems/Documents/Cours/JEE/Bibliotheque/bdd.csv")
+		File f =new File("./bdd.csv")
 		
 		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
 			

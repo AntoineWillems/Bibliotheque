@@ -1,5 +1,6 @@
 package bibliotheque
 
+import org.hibernate.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class LivreController {
@@ -16,12 +17,19 @@ class LivreController {
 		
 	
 		def livreList = Livre.createCriteria().list (params) {
-			if ( params.query ) {
+			if ( params.query && params.typeSearch=="Titre") {
 				ilike("titre", "%${params.query}%")
 			}
 		}
-		
+		// faire une requete avec where
+		def AuteurList = Auteur.createCriteria().list (params) {
+			if ( params.query && params.typeSearch=="Auteur") {
+				ilike("nom", "%${params.query}%")
+			}
+			
+		}
 		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
+		
     }
 
     def create() {
