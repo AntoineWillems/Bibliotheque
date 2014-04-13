@@ -14,20 +14,24 @@ class LivreController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		
 	
-		def livreList = Livre.createCriteria().list (params) {
+		def livreList = Livre.createCriteria().list(params){
 			if ( params.query && params.typeSearch=="Titre") {
 				ilike("titre", "%${params.query}%")
 			}
-		}
-		// faire une requete avec where
-		def AuteurList = Auteur.createCriteria().list (params) {
 			if ( params.query && params.typeSearch=="Auteur") {
-				ilike("nom", "%${params.query}%")
+				auteurs{
+					ilike("nom", "%${params.query}%")
+				}
 			}
-			
+			if ( params.query && params.typeSearch=="TypeDoc") {
+				typeDoc{
+					ilike("intitule", "%${params.query}%")
+				}
+			}
 		}
+		
+		
 		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
 		
     }

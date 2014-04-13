@@ -25,7 +25,7 @@
 			        <div class="fieldcontain">
 			            <label for="query">Search for title:</label>
 			            <g:textField name="query" value="${params.query}"/>
-			            <g:select name="typeSearch" from="${['Titre', 'Auteur']}" />
+			            <g:select name="typeSearch" from="${['Titre', 'Auteur', 'TypeDoc']}" />
 			        </div>
 			    </g:form>
 			</fieldset>
@@ -40,6 +40,8 @@
 						<g:sortableColumn property="nombreExemplaires" title="${message(code: 'livre.nombreExemplaires.label', default: 'Nombre Exemplaires')}" />
 					
 						<g:sortableColumn property="auteur" title="${message(code: 'auteur.nom.label', default: 'Auteur')}" />
+						
+						<g:sortableColumn property="typeDoc" title="${message(code: 'auteur.nom.label', default: 'Type')}" />
 						
 					</tr>
 				</thead>
