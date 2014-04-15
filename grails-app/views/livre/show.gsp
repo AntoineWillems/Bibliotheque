@@ -77,6 +77,7 @@
 					<g:hiddenField name="id" value="${livreInstance?.id}" />
 					<g:link class="edit" action="edit" id="${livreInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:actionSubmit class="commander" action="commander" value="${message(code: 'default.button.commander.label', default: 'Commander')}" onclick="return confirm('${message(code: 'default.button.commander.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>

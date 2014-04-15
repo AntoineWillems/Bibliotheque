@@ -1,27 +1,40 @@
 package bibliotheque
 
+import org.hibernate.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class LivreController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+	//def panier = new Panier(id:1)
+	
     def index() {
         redirect(action: "list", params: params)
     }
 
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-		
+        params.max = Math.min(max ?: 5, 100)
 	
-		def livreList = Livre.createCriteria().list (params) {
-			if ( params.query ) {
+		def livreList = Livre.createCriteria().list(params){
+			if ( params.query && params.typeSearch=="Titre") {
 				ilike("titre", "%${params.query}%")
+			}
+			if ( params.query && params.typeSearch=="Auteur") {
+				auteurs{
+					ilike("nom", "%${params.query}%")
+				}
+			}
+			if ( params.query && params.typeSearch=="TypeDoc") {
+				typeDoc{
+					ilike("intitule", "%${params.query}%")
+				}
 			}
 		}
 		
+		
 		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
+		
     }
 
     def create() {
@@ -108,4 +121,18 @@ class LivreController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def commander(Long id){
+		def livreInstance = Livre.get(id)
+		if (!livreInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'livre.label', default: 'Livre'), id])
+			redirect(action: "list")
+			return
+		}
+		
+		//panier.addToLivres(livreInstance)
+		
+		flash.message = message(code: 'default.commander.message', args: [message(code: 'livre.label', default: 'Livre'), id])
+		redirect(action: "list")
+	}
 }

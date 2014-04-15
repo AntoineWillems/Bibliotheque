@@ -7,15 +7,29 @@ class BootStrap {
     def init = { servletContext ->
 		Livre livre
 		Auteur auteur
-		TypeDocument type
 		def listAuteur = []
-		File f =new File("C://Users/Willems/Documents/Cours/JEE/Bibliotheque/bdd.csv")
+		File f =new File("./bdd.csv")
 		
 		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
 			
-			type = new TypeDocument(intitule:tokens[1]).save()
+			
 			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).save()
-			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteur(new Auteur(nom:"Will", prenom:"Ant")).save()
+			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(new Auteur(nom:"Will", prenom:"Ant")).save()
+			
+			def auteurExist = false
+			listAuteur.each{ auteur1 ->
+				if(auteur1.getNom()==tokens[4]){
+					livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
+					auteurExist = true
+				}
+			}
+			if(auteurExist==false){
+				def auteur1 = new Auteur(nom:tokens[4], prenom:tokens[5])
+				livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
+				listAuteur.add(auteur1)
+			}
+			
+			/*
 			def auteurExist = false
 			listAuteur.each{ auteur1 ->
 				if(auteur1.getNom()==tokens[4]){
@@ -27,6 +41,8 @@ class BootStrap {
 				auteur = new Auteur(nom:tokens[4], prenom:tokens[5]).addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)).save()
 				listAuteur.add(auteur)
 			}
+			*/
+			
 		}
     }
     def destroy = {
