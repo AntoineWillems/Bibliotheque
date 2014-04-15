@@ -37,10 +37,8 @@
 					
 						<g:sortableColumn property="nombreExemplairesDisponible" title="${message(code: 'livre.nombreExemplairesDisponible.label', default: 'Nombre Exemplaires Disponible')}" />
 					
-						<g:sortableColumn property="nombreExemplaires" title="${message(code: 'livre.nombreExemplaires.label', default: 'Nombre Exemplaires')}" />
-					
 						<g:sortableColumn property="auteur" title="${message(code: 'auteur.nom.label', default: 'Auteur')}" />
-						
+												
 						<g:sortableColumn property="typeDoc" title="${message(code: 'auteur.nom.label', default: 'Type')}" />
 						
 					</tr>
@@ -54,8 +52,6 @@
 					
 						<td>${fieldValue(bean: livreInstance, field: "nombreExemplairesDisponible")}</td>
 					
-						<td>${fieldValue(bean: livreInstance, field: "nombreExemplaires")}</td>
-						
 						<g:each in="${livreInstance.auteurs}" var="auteur">
 								<td>${fieldValue(bean: auteur, field: "nom")}</td>
 						</g:each>
