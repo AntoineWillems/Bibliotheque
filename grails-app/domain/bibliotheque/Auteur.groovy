@@ -1,4 +1,3 @@
-
 package bibliotheque
 
 class Auteur {

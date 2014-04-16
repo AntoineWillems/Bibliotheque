@@ -5,14 +5,10 @@ class Livre {
 	String titre
 	int nombreExemplaires
 	int nombreExemplairesDisponible
-	
-	static belongsTo = [Auteur, Reservation]
+	//static belongsTo = [Auteur, Reservation]
 	static hasMany = [auteurs:Auteur,
 						reservations:Reservation]
 	
-	public void commandeLivre(){
-		nombreExemplairesDisponible--;
-	}
 	
     static constraints = {
 		titre blank:true 
@@ -20,4 +16,5 @@ class Livre {
 		nombreExemplaires min:0 , blank:true
 		
     }
+	
 }
