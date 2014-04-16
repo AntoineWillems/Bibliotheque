@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package bibliotheque
 
 /**
@@ -13,21 +12,9 @@ class Utilisateur {
     String password
 
     static belongsTo = [
-            panier : Panier
+            panier: Panier
     ]
     static constraints = {
-
-=======
-package bibliotheque
-
-class Utilisateur {
-
-	String nom
-	String prenom
-	
-	//static hasOne = [panier:Panier]
-	
-    static constraints = {
->>>>>>> remotes/origin/dev/antoine
+    nom(blank: false, nullable: false)
     }
 }
