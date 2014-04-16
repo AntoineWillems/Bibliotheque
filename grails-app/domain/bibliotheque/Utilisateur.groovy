@@ -12,8 +12,9 @@ class Utilisateur {
     String password
 
     static belongsTo = [
-            panier : Panier
+            panier: Panier
     ]
     static constraints = {
+
     }
 }
