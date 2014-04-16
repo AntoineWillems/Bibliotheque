@@ -23,7 +23,7 @@
 			<fieldset class="form">
 			    <g:form action="list" method="GET">
 			        <div class="fieldcontain">
-			            <label for="query">Search for title:</label>
+			            <label for="query">Search :</label>
 			            <g:textField name="query" value="${params.query}"/>
 			            <g:select name="typeSearch" from="${['Titre', 'Auteur', 'TypeDoc']}" />
 			        </div>
@@ -39,7 +39,7 @@
 					
 						<g:sortableColumn property="auteur" title="${message(code: 'auteur.nom.label', default: 'Auteur')}" />
 												
-						<g:sortableColumn property="typeDoc" title="${message(code: 'auteur.nom.label', default: 'Type')}" />
+						<g:sortableColumn property="typeDoc" title="${message(code: 'livre.typedocument.label', default: 'Type')}" />
 						
 					</tr>
 				</thead>
@@ -55,6 +55,9 @@
 						<g:each in="${livreInstance.auteurs}" var="auteur">
 								<td>${fieldValue(bean: auteur, field: "nom")}</td>
 						</g:each>
+                        <g:each in="${livreInstance.typedocument}" var="typedocument">
+                            <td>${fieldValue(bean: typedocument, field: "intitule")}</td>
+                        </g:each>
 						
 					</tr>
 				</g:each>
