@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 package bibliotheque
 
 class Auteur {
@@ -14,22 +12,5 @@ class Auteur {
 		nom blank:true
 		prenom blank:true
     }
-	
 }
-=======
-package bibliotheque
 
-class Auteur {
-	
-	String nom
-	String prenom
-	
-	static belongsTo = Livre
-	static hasMany = [livres:Livre]
-	
-    static constraints = {
-		nom blank:true
-		prenom blank:true
-    }
-}
->>>>>>> dev/antoine
