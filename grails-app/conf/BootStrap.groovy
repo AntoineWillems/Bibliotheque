@@ -26,6 +26,7 @@ class BootStrap {
 			if(auteurExist==false){
 				def auteur1 = new Auteur(nom:tokens[4], prenom:tokens[5])
 				livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
+                livre.addToTypedocument(new TypeDocument(intitule: "dd")).save()
 				listAuteur.add(auteur1)
 			}
 			

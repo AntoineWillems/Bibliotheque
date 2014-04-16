@@ -2,8 +2,10 @@ package bibliotheque
 
 class TypeDocument {
 
-	String intitule
-	
+    def Livre livre1
+    static belongsTo = [Livre]
+    String intitule
+
     static constraints = {
     }
 }
