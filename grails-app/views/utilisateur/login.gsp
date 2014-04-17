@@ -20,7 +20,8 @@
         <fieldset>
             <label for="pseudo" class="float">Pseudo :</label> <input type="text" name="pseudo" id="pseudo" size="30" /> <br />
             <label for="mdp" class="float">Mot de passe :</label> <input type="password" name="mdp" id="mdp" size="30" /><br />
-            <div class="center"><input type="submit" value="Login" /></div>
+            <div class="center"><input type="submit" value="Login" />
+            <g:link controller="utilisateur" action="create">Sign in</g:link></div>
         </fieldset>
     </div>
 </g:form>
