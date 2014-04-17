@@ -1,5 +1,5 @@
 
-<%@ page import="bibliotheque.Livre" %>
+<%@ page import="bibliotheque.UtilisateurController; bibliotheque.Livre" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -77,7 +77,8 @@
 					<g:hiddenField name="id" value="${livreInstance?.id}" />
 					<g:link class="edit" action="edit" id="${livreInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					<g:actionSubmit class="commander" action="commander" value="${message(code: 'default.button.commander.label', default: 'Commander')}" onclick="return confirm('${message(code: 'default.button.commander.confirm.message', default: 'Are you sure?')}');" />
+                    <g:link class="commande" controller="utilisateur" action="login"><g:message code="default.button.commander.label" default="Commander" /></g:link>
+
 				</fieldset>
 			</g:form>
 		</div>

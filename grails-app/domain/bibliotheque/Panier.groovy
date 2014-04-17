@@ -1,7 +1,10 @@
 package bibliotheque
 
 class Panier {
-	int id
+
+
+    int id
+
 	static hasMany = [livres:Livre]
 
     static constraints = {
