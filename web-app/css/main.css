@@ -594,3 +594,12 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+.float {
+    display: block;
+    width:200px;
+    float:left;
+}
+
+.center {
+    text-align: center;
+}
