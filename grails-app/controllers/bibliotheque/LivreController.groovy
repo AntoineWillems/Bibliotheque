@@ -26,7 +26,9 @@ class LivreController {
 				}
 			}
 			if ( params.query && params.typeSearch=="TypeDoc") {
-				typeDoc{
+				
+				//changement
+				typedocument{
 					ilike("intitule", "%${params.query}%")
 				}
 			}
