@@ -1,6 +1,8 @@
 import bibliotheque.Auteur
 import bibliotheque.Livre
+import bibliotheque.Panier
 import bibliotheque.TypeDocument
+import bibliotheque.Utilisateur
 
 class BootStrap {
 
@@ -9,18 +11,21 @@ class BootStrap {
 		Auteur auteur
 		def listAuteur = []
 		File f =new File("./bdd.csv")
-		
+        def panier = new Panier();
+        panier.save(failOnError: true)
+        def utilisateur  = new Utilisateur(version: "1",login: "admin",mail: "khadrygassama@gmail.com",panier:panier,password:"abdoul")
+        utilisateur.save(failOnError: true)
 		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
 			
 			
 			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).save()
 			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(new Auteur(nom:"Will", prenom:"Ant")).save()
-			
+
 			def auteurExist = false
 			listAuteur.each{ auteur1 ->
 				if(auteur1.getNom()==tokens[4]){
 					livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
-					auteurExist = true
+                    auteurExist = true
 				}
 			}
 			if(auteurExist==false){

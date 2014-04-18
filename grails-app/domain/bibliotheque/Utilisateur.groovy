@@ -13,6 +13,11 @@ class Utilisateur {
             panier: Panier
     ]
     static constraints = {
-
+    login unique: true, nullable: false
+    password password: true
+        panier nullable: true
+    }
+    String toString(){
+        login
     }
 }
