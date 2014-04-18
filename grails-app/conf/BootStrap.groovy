@@ -7,49 +7,56 @@ import bibliotheque.Utilisateur
 class BootStrap {
 
     def init = { servletContext ->
-		Livre livre
-		Auteur auteur
-		def listAuteur = []
-		File f =new File("./bdd.csv")
+        /* Livre livre
+        Auteur auteur
+        def listAuteur = []
+        def listTypeDoc = []
+        File f =new File("./bdd.csv")
+
+
         def panier = new Panier();
         panier.save(failOnError: true)
         def utilisateur  = new Utilisateur(version: "1",login: "admin",mail: "khadrygassama@gmail.com",panier:panier,password:"abdoul")
         utilisateur.save(failOnError: true)
-		f.toCsvReader(['separatorChar':'	']).eachLine { tokens ->
-			
-			
-			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).save()
-			//livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(new Auteur(nom:"Will", prenom:"Ant")).save()
+       
 
-			def auteurExist = false
-			listAuteur.each{ auteur1 ->
-				if(auteur1.getNom()==tokens[4]){
-					livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
+        f.toCsvReader(['separatorChar':'	', 'skipLines':1]).eachLine { tokens ->
+
+            livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)
+
+            def auteurExist = false
+            listAuteur.each{ auteur1 ->
+                if(auteur1.getNom()==tokens[4]){
                     auteurExist = true
-				}
-			}
-			if(auteurExist==false){
-				def auteur1 = new Auteur(nom:tokens[4], prenom:tokens[5])
-				livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1).addToAuteurs(auteur1).save()
-                livre.addToTypedocument(new TypeDocument(intitule:tokens[1]))
-				listAuteur.add(auteur1)
-			}
-			
-			/*
-			def auteurExist = false
-			listAuteur.each{ auteur1 ->
-				if(auteur1.getNom()==tokens[4]){
-					auteur1.addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1))
-					auteurExist = true
-				}
-			}
-			if(auteurExist==false){
-				auteur = new Auteur(nom:tokens[4], prenom:tokens[5]).addToLivres(new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)).save()
-				listAuteur.add(auteur)
-			}
-			*/
-			
-		}
+                    livre.addToAuteurs(auteur1)
+                }
+            }
+
+            def typeDocExist = false
+            listTypeDoc.each{ typeDoc1 ->
+                if(typeDoc1.getIntitule()==tokens[1]){
+                    typeDocExist = true
+                    livre.addToTypedocument(typeDoc1)
+
+                }
+            }
+
+            if(typeDocExist==false){
+                def typeDoc1 = new TypeDocument(intitule:tokens[1])
+                livre.addToTypedocument(typeDoc1)
+                listTypeDoc.add(typeDoc1)
+            }
+            if(auteurExist==false){
+                def auteur1 = new Auteur(nom:tokens[4], prenom:tokens[5])
+                livre.addToAuteurs(auteur1)
+                listAuteur.add(auteur1)
+            }
+
+            livre.save()
+
+
+        }
+    }*/
     }
     def destroy = {
     }
