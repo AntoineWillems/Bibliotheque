@@ -14,9 +14,6 @@ class LivreController {
 
 
     def list(Integer max) {
-        if(!session.user){
-            redirect(controller: "utilisateur",action:"login")
-        }
         params.max = Math.min(max ?: 5, 100)
 	
 		def livreList = Livre.createCriteria().list(params){
@@ -29,7 +26,7 @@ class LivreController {
 				}
 			}
 			if ( params.query && params.typeSearch=="TypeDoc") {
-				typedocument{
+				typeDoc{
 					ilike("intitule", "%${params.query}%")
 				}
 			}
