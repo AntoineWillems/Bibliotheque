@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list utilisateur">
 			
-				<g:if test="${utilisateurInstance?.adress}">
-				<li class="fieldcontain">
-					<span id="adress-label" class="property-label"><g:message code="utilisateur.adress.label" default="Adress" /></span>
-					
-						<span class="property-value" aria-labelledby="adress-label"><g:fieldValue bean="${utilisateurInstance}" field="adress"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${utilisateurInstance?.login}">
 				<li class="fieldcontain">
 					<span id="login-label" class="property-label"><g:message code="utilisateur.login.label" default="Login" /></span>
@@ -42,22 +33,15 @@
 				</g:if>
 			
 				<g:if test="${utilisateurInstance?.mail}">
-				<li class="fieldcontain">
-					<span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
-					
-						<span class="property-value" aria-labelledby="mail-label"><g:fieldValue bean="${utilisateurInstance}" field="mail"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.nom}">
-				<li class="fieldcontain">
-					<span id="nom-label" class="property-label"><g:message code="utilisateur.nom.label" default="Nom" /></span>
-					
-						<span class="property-value" aria-labelledby="nom-label"><g:fieldValue bean="${utilisateurInstance}" field="nom"/></span>
-					
-				</li>
-				</g:if>
+                <li class="fieldcontain">
+                    <span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
+
+                    <span class="property-value" aria-labelledby="mail-label"><g:fieldValue bean="${utilisateurInstance}" field="mail"/></span>
+
+                </li>
+            </g:if>
+
+
 			
 				<g:if test="${utilisateurInstance?.panier}">
 				<li class="fieldcontain">
@@ -77,14 +61,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${utilisateurInstance?.prenom}">
-				<li class="fieldcontain">
-					<span id="prenom-label" class="property-label"><g:message code="utilisateur.prenom.label" default="Prenom" /></span>
-					
-						<span class="property-value" aria-labelledby="prenom-label"><g:fieldValue bean="${utilisateurInstance}" field="prenom"/></span>
-					
-				</li>
-				</g:if>
+
 			
 			</ol>
 			<g:form>
