@@ -1,8 +1,10 @@
 package bibliotheque
 
 class Panier {
+	
+	static belongsTo = Livre
 	static hasMany = [livres:Livre]
-
+	
 	static mapping = {
 		livres fecth:"join"
 	}
