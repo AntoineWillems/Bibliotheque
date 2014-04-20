@@ -13,7 +13,6 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-livre" class="content scaffold-show" role="main">
@@ -54,7 +53,7 @@
 					<span id="auteurs-label" class="property-label"><g:message code="livre.auteurs.label" default="Auteurs" /></span>
 					
 						<g:each in="${livreInstance.auteurs}" var="a">
-						<span class="property-value" aria-labelledby="auteurs-label"><g:link controller="auteur" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="auteurs-label"><g:link controller="auteur" action="show" id="${a.id}">${a.nom} ${a.prenom}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -75,8 +74,6 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${livreInstance?.id}" />
-					<g:link class="edit" action="edit" id="${livreInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                     <g:link class="commande" action="commander" id="${livreInstance?.id}"><g:message code="default.button.commander.label" default="Commander" /></g:link>
 				</fieldset>
 			</g:form>
