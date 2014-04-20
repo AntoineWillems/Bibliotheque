@@ -78,28 +78,30 @@
 				</fieldset>
 			</g:form>
 		</div>
-		<div class="affichePanier">
-		<table>
-				<thead>
-					<tr>	
-						<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
-						
-					</tr>
-				</thead>
-				<tbody>
-					<g:each in="${panierInstance.livres}" status="j" var="livre">
-						<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
-							<td>${fieldValue(bean: livre, field: "titre")}</td>
+		<g:if test="${panierInstance?.livres}">
+			<div class="affichePanier">
+			<table>
+					<thead>
+						<tr>	
+							<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
+							
 						</tr>
-					</g:each>
-				</tbody>
-			</table>
-			<g:form>
-				<fieldset class="buttons">
-					 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
-				</fieldset>
-			</g:form>
-			
-		</div>
+					</thead>
+					<tbody>
+						<g:each in="${panierInstance.livres}" status="j" var="livre">
+							<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
+								<td>${fieldValue(bean: livre, field: "titre")}</td>
+							</tr>
+						</g:each>
+					</tbody>
+				</table>
+				<g:form>
+					<fieldset class="buttons">
+						 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
+					</fieldset>
+				</g:form>
+				
+			</div>
+		</g:if>
 	</body>
 </html>

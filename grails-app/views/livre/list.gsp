@@ -25,7 +25,12 @@
 			        <div class="fieldcontain">
 			            <label for="query">Search :</label>
 			            <g:textField name="query" value="${params.query}"/>
-			            <g:select name="typeSearch" from="${['Titre', 'Auteur', 'TypeDoc']}" />
+			            <label for="checkBoxTitre">Titre :</label>
+			            <g:checkBox name="checkBoxTitre" value="${false}" />
+			            <label for="checkBoxAuteur">Auteur :</label>
+			            <g:checkBox name="checkBoxAuteur" value="${false}" />
+			            <label for="checkBoxTypeDoc">TypeDocument :</label>
+			            <g:checkBox name="checkBoxTypeDoc" value="${false}" />
 			        </div>
 			    </g:form>
 			</fieldset>
@@ -67,31 +72,34 @@
 				<g:paginate total="${livreInstanceTotal}" />
 			</div>
 		</div>
-		<div class="affichePanier">
-		<table>
-				<thead>
-					<tr>	
-						<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
+		<g:if test="${panierInstance?.livres}">
+			<div class="affichePanier">
+			<table>
+					<thead>
+						<tr>	
+							<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
+							
+						</tr>
+					</thead>
+					<tbody>
+				
+					<g:each in="${panierInstance.livres}" status="j" var="livre">
+						<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
 						
-					</tr>
-				</thead>
-				<tbody>
-			
-				<g:each in="${panierInstance.livres}" status="j" var="livre">
-					<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
-					
-					<td>${fieldValue(bean: livre, field: "titre")}</td>
-						
-						
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-		</div>
-		<g:form>
-				<fieldset class="buttons">
-					 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
-				</fieldset>
-		</g:form>
+						<td>${fieldValue(bean: livre, field: "titre")}</td>
+							
+							
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+				<g:form>
+					<fieldset class="buttons">
+						 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
+					</fieldset>
+			</g:form>
+			</div>
+		</g:if>
+		
 	</body>
 </html>

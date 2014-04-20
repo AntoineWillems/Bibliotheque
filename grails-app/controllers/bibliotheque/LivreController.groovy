@@ -16,16 +16,18 @@ class LivreController {
         params.max = Math.min(max ?: 5, 100)
 	
 		def livreList = Livre.createCriteria().list(params){
-			if ( params.query && params.typeSearch=="Titre") {
+			
+			if ( params.query && params.checkBoxTitre=="on") {
 				ilike("titre", "%${params.query}%")
 			}
-			if ( params.query && params.typeSearch=="Auteur") {
+			if ( params.query && params.checkBoxAuteur=="on") {
 				auteurs{
 					ilike("nom", "%${params.query}%")
 				}
 			}
-			if ( params.query && params.typeSearch=="TypeDoc") {
-				typeDoc{
+			if ( params.query && params.checkBoxTypeDoc=="on") {
+				System.out.println("test")
+				typedocument{
 					ilike("intitule", "%${params.query}%")
 				}
 			}
