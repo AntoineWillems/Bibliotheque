@@ -90,15 +90,11 @@
 					</tr>
 				</thead>
 				<tbody>
-			
-				<g:each in="${panierInstance.livres}" status="j" var="livre">
-					<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
-					
-					<td>${fieldValue(bean: livre, field: "titre")}</td>
-						
-						
-					</tr>
-				</g:each>
+					<g:each in="${panierInstance.livres}" status="j" var="livre">
+						<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
+							<td>${fieldValue(bean: livre, field: "titre")}</td>
+						</tr>
+					</g:each>
 				</tbody>
 			</table>
 			<g:form>

@@ -28,7 +28,7 @@
 					<span id="livres-label" class="property-label"><g:message code="panier.livres.label" default="Livres" /></span>
 					
 						<g:each in="${panierInstance.livres}" var="l">
-						<span class="property-value" aria-labelledby="livres-label"><g:link controller="livre" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="livres-label"><g:link controller="livre" action="show" id="${l.id}">${l?.titre}</g:link></span>
 						</g:each>
 					
 				</li>

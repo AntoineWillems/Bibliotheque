@@ -140,5 +140,6 @@ class LivreController {
 	
 	def commanderPanier(){
 		redirect(controller: "panier", action:"show", id:"67")
+		//redirect(controller: "panier", action:"show", id:session.panier.id)
 	}
 }

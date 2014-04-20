@@ -108,15 +108,20 @@ class PanierController {
 			return
 		}
 		
+		//session.reservation
+		Reservation reservation = new Reservation()
+		
 		def livreList = panierInstance.getLivres()
 		livreList.each { livre ->
 			def nombreExemplairesDisponible = livre.getNombreExemplairesDisponible()
 			livre.setNombreExemplairesDisponible(nombreExemplairesDisponible-1)
+			//reservation.addToLivres(livre).save()
 		}
 		
 		// Ajouter livre dans la reservation.
 		
 		panierInstance.setLivres(null)
+		
 		
 		redirect(controller: "reservation", action:"list")
 	}
