@@ -33,6 +33,21 @@
 				</g:if>
 			
 				<g:if test="${utilisateurInstance?.mail}">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                <li class="fieldcontain">
+                    <span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
+
+                    <span class="property-value" aria-labelledby="mail-label"><g:fieldValue bean="${utilisateurInstance}" field="mail"/></span>
+
+                </li>
+            </g:if>
+
+
+			
+=======
+>>>>>>> c47e62122e2181df38428dffb4242429b3a62be2
 				<li class="fieldcontain">
 					<span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
 					
@@ -41,6 +56,10 @@
 				</li>
 				</g:if>
 				
+<<<<<<< HEAD
+=======
+>>>>>>> dev/antoine
+>>>>>>> c47e62122e2181df38428dffb4242429b3a62be2
 				<g:if test="${utilisateurInstance?.panier}">
 				<li class="fieldcontain">
 					<span id="panier-label" class="property-label"><g:message code="utilisateur.panier.label" default="Panier" /></span>
@@ -58,7 +77,17 @@
 					
 				</li>
 				</g:if>
+<<<<<<< HEAD
 				
+=======
+<<<<<<< HEAD
+			
+
+			
+=======
+				
+>>>>>>> dev/antoine
+>>>>>>> c47e62122e2181df38428dffb4242429b3a62be2
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

@@ -74,7 +74,17 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${livreInstance?.id}" />
+<<<<<<< HEAD
                     <g:link class="commande" action="commander" id="${livreInstance?.id}"><g:message code="default.button.commander.label" default="Commander" /></g:link>
+=======
+<<<<<<< HEAD
+					<g:link class="edit" action="edit" id="${livreInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:link class="commande"><g:message code="default.button.commander.label" default="Commander" /></g:link>
+=======
+                    <g:link class="commande" action="commander" id="${livreInstance?.id}"><g:message code="default.button.commander.label" default="Commander" /></g:link>
+>>>>>>> dev/antoine
+>>>>>>> c47e62122e2181df38428dffb4242429b3a62be2
 				</fieldset>
 			</g:form>
 		</div>
