@@ -99,4 +99,25 @@ class PanierController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def commanderPanier(Long id){
+		def panierInstance = Panier.get(id)
+		if (!panierInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'panier.label', default: 'Panier'), id])
+			redirect(action: "list")
+			return
+		}
+		
+		def livreList = panierInstance.getLivres()
+		livreList.each { livre ->
+			def nombreExemplairesDisponible = livre.getNombreExemplairesDisponible()
+			livre.setNombreExemplairesDisponible(nombreExemplairesDisponible-1)
+		}
+		
+		// Ajouter livre dans la reservation.
+		
+		panierInstance.setLivres(null)
+		
+		redirect(controller: "reservation", action:"list")
+	}
 }

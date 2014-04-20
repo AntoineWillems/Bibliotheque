@@ -32,8 +32,7 @@ class LivreController {
 			}
 		}
 		
-		
-		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount]
+		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount, panierInstance: Panier.findById(67)]
 		
     }
 
@@ -60,7 +59,7 @@ class LivreController {
             return
         }
 
-        [livreInstance: livreInstance]
+        [livreInstance: livreInstance,  panierInstance: Panier.findById(67)]
     }
 
     def edit(Long id) {
@@ -128,11 +127,18 @@ class LivreController {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'livre.label', default: 'Livre'), id])
 			redirect(action: "list")
 			return
-		}
+		}		
 		
-		//panier.addToLivres(livreInstance)
+		
+		System.out.println(session.panier.id)
+		Panier p = session.panier
+		p.addToLivres(livreInstance)
 		
 		flash.message = message(code: 'default.commander.message', args: [message(code: 'livre.label', default: 'Livre'), id])
 		redirect(action: "list")
+	}
+	
+	def commanderPanier(){
+		redirect(controller: "panier", action:"show", id:"67")
 	}
 }

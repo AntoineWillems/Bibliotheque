@@ -12,6 +12,11 @@ class Utilisateur {
     static belongsTo = [
             panier: Panier
     ]
+	
+	static mapping = {
+		panier fecth:"join"
+	}
+	
     static constraints = {
     login unique: true, nullable: false
     password password: true

@@ -77,9 +77,36 @@
 					<g:hiddenField name="id" value="${livreInstance?.id}" />
 					<g:link class="edit" action="edit" id="${livreInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                    <g:link class="commande" controller="utilisateur" action="login"><g:message code="default.button.commander.label" default="Commander" /></g:link>
+                    <g:link class="commande" action="commander" id="${livreInstance?.id}"><g:message code="default.button.commander.label" default="Commander" /></g:link>
 				</fieldset>
 			</g:form>
+		</div>
+		<div class="affichePanier">
+		<table>
+				<thead>
+					<tr>	
+						<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
+						
+					</tr>
+				</thead>
+				<tbody>
+			
+				<g:each in="${panierInstance.livres}" status="j" var="livre">
+					<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
+					
+					<td>${fieldValue(bean: livre, field: "titre")}</td>
+						
+						
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<g:form>
+				<fieldset class="buttons">
+					 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
+				</fieldset>
+			</g:form>
+			
 		</div>
 	</body>
 </html>
