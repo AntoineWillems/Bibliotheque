@@ -21,14 +21,21 @@ class UtilisateurController {
 
     def save() {
         def utilisateurInstance = new Utilisateur(params)
+<<<<<<< HEAD
         utilisateurInstance.setPanier(new Panier().save())
+=======
+		Panier panier = new Panier().save()
+		Reservation reserv = new Reservation().save()
+		utilisateurInstance.setPanier(panier)
+		utilisateurInstance.setReservation(reserv)
+>>>>>>> dev/antoine
         if (!utilisateurInstance.save(flush: true)) {
             render(view: "create", model: [utilisateurInstance: utilisateurInstance])
             return
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateurInstance.id])
-        redirect(action: "show", id: utilisateurInstance.id)
+        redirect(controller:"livre", action:"list")
     }
 
     def show(Long id) {

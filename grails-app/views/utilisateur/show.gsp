@@ -33,6 +33,7 @@
 				</g:if>
 			
 				<g:if test="${utilisateurInstance?.mail}">
+<<<<<<< HEAD
                 <li class="fieldcontain">
                     <span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
 
@@ -43,6 +44,16 @@
 
 
 			
+=======
+				<li class="fieldcontain">
+					<span id="mail-label" class="property-label"><g:message code="utilisateur.mail.label" default="Mail" /></span>
+					
+						<span class="property-value" aria-labelledby="mail-label"><g:fieldValue bean="${utilisateurInstance}" field="mail"/></span>
+					
+				</li>
+				</g:if>
+				
+>>>>>>> dev/antoine
 				<g:if test="${utilisateurInstance?.panier}">
 				<li class="fieldcontain">
 					<span id="panier-label" class="property-label"><g:message code="utilisateur.panier.label" default="Panier" /></span>
@@ -60,9 +71,13 @@
 					
 				</li>
 				</g:if>
+<<<<<<< HEAD
 			
 
 			
+=======
+				
+>>>>>>> dev/antoine
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
