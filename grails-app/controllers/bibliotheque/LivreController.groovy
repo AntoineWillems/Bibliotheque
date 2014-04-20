@@ -3,6 +3,8 @@ package bibliotheque
 import org.hibernate.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
+import javax.swing.JOptionPane
+
 class LivreController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -92,4 +94,20 @@ class LivreController {
 		Panier p = user.getPanier()
 		redirect(controller: "panier", action:"show", id:p.id)
 	}
+
+    def supprimerLivreduPanier(Long id){
+        Livre livreInstance = Livre.get(id)
+        if (!livreInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'livre.label', default: 'Livre'), id])
+            redirect(action: "list")
+            return
+        }
+
+        Utilisateur user = Utilisateur.find(session.user)
+        Panier p = user.getPanier()
+        p.removeFromLivres(livreInstance)
+        p.save()
+        flash.message = message(code: 'default.commander.message', args: [message(code: 'livre.label', default: 'Livre'), id])
+        redirect(action: "list")
+    }
 }

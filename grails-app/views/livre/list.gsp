@@ -87,7 +87,10 @@
 						<tr class="${(j % 2) == 0 ? 'even' : 'odd'}">
 						
 						<td>${fieldValue(bean: livre, field: "titre")}</td>
-							
+                        <td style="width: 20px"><fieldset class="buttons">
+                            <g:hiddenField name="id" value="${livre?.id}" />
+                            <g:link class="supprimerLivre" action="supprimerLivreduPanier" id="${livre?.id}" ><g:message code="default.button.supprimerLivre.label" default="supprimer" /></g:link>
+                        </fieldset></td>
 							
 						</tr>
 					</g:each>
