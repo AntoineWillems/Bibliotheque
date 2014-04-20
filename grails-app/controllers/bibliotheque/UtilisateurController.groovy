@@ -21,15 +21,17 @@ class UtilisateurController {
 
     def save() {
         def utilisateurInstance = new Utilisateur(params)
-		Panier p = new Panier().save()
-		utilisateurInstance.setPanier(p)
+		Panier panier = new Panier().save()
+		Reservation reserv = new Reservation().save()
+		utilisateurInstance.setPanier(panier)
+		utilisateurInstance.setReservation(reserv)
         if (!utilisateurInstance.save(flush: true)) {
             render(view: "create", model: [utilisateurInstance: utilisateurInstance])
             return
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateurInstance.id])
-        redirect(action: "show", id: utilisateurInstance.id)
+        redirect(controller:"livre", action:"list")
     }
 
     def show(Long id) {
@@ -117,10 +119,8 @@ class UtilisateurController {
 
     def authenticate = {
         def user = Utilisateur.findByLoginAndPassword(params.login, params.password)
-		//def panier = user.getPanier()
         if(user){
             session.user = user
-			//session.panier = panier
             flash.message = "Hello ${user.login}!"
             redirect(controller:"livre", action:"list")
         }else{

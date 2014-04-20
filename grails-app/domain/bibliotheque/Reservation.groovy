@@ -13,6 +13,7 @@ class Reservation {
 	}
 	
     static constraints = {
+		livres nullable:true
 		code blank:false, unique:true
 		dateReservation blank:false
     }

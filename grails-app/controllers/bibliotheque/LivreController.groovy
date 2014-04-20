@@ -91,6 +91,5 @@ class LivreController {
 		Utilisateur user = Utilisateur.find(session.user)
 		Panier p = user.getPanier()
 		redirect(controller: "panier", action:"show", id:p.id)
-		//redirect(controller: "panier", action:"show", id:session.panier.id)
 	}
 }
