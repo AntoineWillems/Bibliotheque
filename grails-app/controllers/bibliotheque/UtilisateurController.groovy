@@ -31,7 +31,7 @@ class UtilisateurController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateurInstance.id])
-        redirect(controller:"livre", action:"list")
+        redirect(controller:"livre", action:"list",login:utilisateurInstance.login,password:utilisateurInstance.password)
     }
 
     def show(Long id) {

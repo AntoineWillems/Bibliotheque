@@ -114,7 +114,7 @@ class PanierController {
             }
 
         }
-        redirect(controller: "Reservation", action: "show")
+        redirect(controller: "Reservation", action: "list")
 	}
 }
 

@@ -15,31 +15,35 @@ class LivreController {
 
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 5, 100)
-	
-		def livreList = Livre.createCriteria().list(params){
-			
-			if ( params.query && params.checkBoxTitre=="on") {
-				ilike("titre", "%${params.query}%")
-			}
-			if ( params.query && params.checkBoxAuteur=="on") {
-				auteurs{
-					ilike("nom", "%${params.query}%")
-				}
-			}
-			if ( params.query && params.checkBoxTypeDoc=="on") {
-				System.out.println("test")
-				typedocument{
-					ilike("intitule", "%${params.query}%")
-				}
-			}
-		}
-		Utilisateur user = Utilisateur.find(session.user)
-		Panier p = user.getPanier()
-		
-		[livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount, panierInstance: p]
-		
+        if (!session.user) {
+            redirect(controller: "utilisateur", action: "login")
+        } else {
+            params.max = Math.min(max ?: 5, 100)
+
+            def livreList = Livre.createCriteria().list(params) {
+
+                if (params.query && params.checkBoxTitre == "on") {
+                    ilike("titre", "%${params.query}%")
+                }
+                if (params.query && params.checkBoxAuteur == "on") {
+                    auteurs {
+                        ilike("nom", "%${params.query}%")
+                    }
+                }
+                if (params.query && params.checkBoxTypeDoc == "on") {
+                    System.out.println("test")
+                    typedocument {
+                        ilike("intitule", "%${params.query}%")
+                    }
+                }
+            }
+            Utilisateur user = Utilisateur.find(session.user)
+            Panier p = user.getPanier()
+
+            [livreInstanceList: livreList, livreInstanceTotal: livreList.totalCount, panierInstance: p]
+        }
     }
+
 
     def create() {
         [livreInstance: new Livre(params)]
