@@ -10,9 +10,10 @@ class Utilisateur {
     String password
 
     static belongsTo = [
-            panier: Panier,
-			reservation: Reservation
+            panier: Panier
     ]
+	
+	static hasMany = [reservations: Reservation]
 	
 	static mapping = {
 		panier fecth:"join"
@@ -22,7 +23,7 @@ class Utilisateur {
 	    login unique: true, nullable: false
 	    password password: true
 	    panier nullable: true
-		reservation nullable: true
+		reservations nullable: true
     }
     String toString(){
         login

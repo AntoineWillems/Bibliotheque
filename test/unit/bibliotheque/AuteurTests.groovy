@@ -11,7 +11,10 @@ import org.junit.*
 @TestFor(Auteur)
 class AuteurTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+	
+	void testConstraints() {
+		def existingAuteur = new Auteur()
+		mockForConstraintsTests(Auteur, [existingAuteur])
+	}
+	
 }

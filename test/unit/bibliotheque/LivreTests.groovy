@@ -11,7 +11,10 @@ import org.junit.*
 @TestFor(Livre)
 class LivreTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+	void testConstraints() {
+		def existingLivre = new Livre()
+		mockForConstraintsTests(Livre, [existingLivre])
+		
+	
+	}
 }

@@ -11,7 +11,5 @@ import org.junit.*
 @TestFor(Reservation)
 class ReservationTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+  
 }

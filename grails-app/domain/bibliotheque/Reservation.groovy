@@ -14,7 +14,7 @@ class Reservation {
 	
     static constraints = {
 		livres nullable:true
-		code blank:false, unique:true
+		code blank:true, nullable:true
 		dateReservation blank:false
     }
 }

@@ -101,20 +101,57 @@ class PanierController {
     }
 	
 	def commanderPanier(Long id){
+		/*
 		def panierInstance = Panier.get(id)
 		def listlivre = panierInstance.livres
+		def reservation = new Reservation(code:1, dateReservation: new Date())
         listlivre.each {it->
             if(it.nombreExemplairesDisponible==0){
                 flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'panier.label', default: 'Panier'), id])
             }
             else{
-                it.setNombreExemplairesDisponible(it.getNombreExemplairesDisponible()-1)
-                def reservation = new Reservation(livres: it, dateReservation: new Date())
-                reservation.save()
+                Livre.findByTitre(it.titre).setNombreExemplairesDisponible(Livre.findByTitre(it.titre).getNombreExemplairesDisponible()-1) 
+				Livre.findByTitre(it.titre).save()
+				Utilisateur user = Utilisateur.find(session.user)
+				
+				reservation.addToLivres(Livre.findByTitre(it.titre))
+                
+				user.addToReservations(reservation).save()
             }
 
         }
+		panierInstance.setLivres(null)
         redirect(controller: "Reservation", action: "list")
+        
+        */
+		def panierInstance = Panier.get(id)
+		def livreList = panierInstance.getLivres()
+		def reserv = new Reservation(code:1, dateReservation: new Date()).save()
+		
+		
+		livreList.each { livre ->
+		if(livre.getNombreExemplairesDisponible()==0){
+			redirect(action:"show")
+		}
+		else {
+			def nombreExemplairesDisponible = livre.getNombreExemplairesDisponible()
+			livre.setNombreExemplairesDisponible(nombreExemplairesDisponible-1)
+			panierInstance.getLivres().remove(livre)
+			reserv.addToLivres(livre)
+		}
+		
+		
+		//reservation.addToLivres(livre).save()
+		}
+		
+		
+		
+		//Voir s'il ne faut pas mettre un each pour la liste
+		
+		
+		// Ajouter livre dans la reservation.
+		
+		//redirect(controller: "reservation", action:"list")
 	}
 }
 

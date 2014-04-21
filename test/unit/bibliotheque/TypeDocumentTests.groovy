@@ -11,7 +11,5 @@ import org.junit.*
 @TestFor(TypeDocument)
 class TypeDocumentTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+    
 }

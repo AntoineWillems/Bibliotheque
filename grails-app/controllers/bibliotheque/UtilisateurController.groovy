@@ -22,9 +22,7 @@ class UtilisateurController {
     def save() {
         def utilisateurInstance = new Utilisateur(params)
         Panier panier = new Panier().save()
-        Reservation reserv = new Reservation().save()
         utilisateurInstance.setPanier(panier)
-        utilisateurInstance.setReservation(reserv)
         if (!utilisateurInstance.save(flush: true)) {
             render(view: "create", model: [utilisateurInstance: utilisateurInstance])
             return
