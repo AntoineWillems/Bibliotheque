@@ -146,7 +146,7 @@ class PanierController {
 		Utilisateur user = Utilisateur.find(session.user)
 		user.addToReservations(reserv)
 		
-		redirect(controller: "livre", action:"list", params:[commandeValide:"Votre livre sera disponible le "+ new Date().next().format('dd/MM/yy')+"Le code la réservation est :"+reserv.code])
+		redirect(controller: "livre", action:"list", params:[commandeValide:"Votre livre sera disponible le "+ new Date().next().format('dd/MM/yy')+" Le code la réservation est :"+reserv.code])
 	}
 	
 }
