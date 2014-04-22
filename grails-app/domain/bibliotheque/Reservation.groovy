@@ -2,7 +2,7 @@ package bibliotheque
 
 class Reservation {
 
-	int code
+	String code
 	String dateReservation
 	
 	//static belongsTo = Livre

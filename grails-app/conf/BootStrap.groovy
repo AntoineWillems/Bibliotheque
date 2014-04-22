@@ -8,7 +8,7 @@ import bibliotheque.Utilisateur
 class BootStrap {
 
     def init = { servletContext ->
-        
+        /*
 		 Livre livre
         Auteur auteur
         def listAuteur = []
@@ -49,6 +49,7 @@ class BootStrap {
 
             livre.save()
         }
+        */
         
     }
     def destroy = {
