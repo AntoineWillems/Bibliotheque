@@ -116,7 +116,8 @@ class PanierController {
 		def panierInstance = Panier.get(id)
 		def livreList = panierInstance.getLivres()
 		def dateCourante = new Date().next()
-		def reserv = new Reservation(dateReservation:dateCourante.format('dd/MM/yy')).save()
+        def cod = dateCourante.format('dd/MM/yy')+""+panierInstance.getId()
+        def reserv = new Reservation(code: cod.encodeAsMD5(), dateReservation:dateCourante.format('dd/MM/yy')).save()
 		
 		def newListLivre = []
 		
@@ -145,7 +146,7 @@ class PanierController {
 		Utilisateur user = Utilisateur.find(session.user)
 		user.addToReservations(reserv)
 		
-		redirect(controller: "livre", action:"list", params:[commandeValide:"Votre livre sera disponible le "+ new Date().next().format('dd/MM/yy')])
+		redirect(controller: "livre", action:"list", params:[commandeValide:"Votre livre sera disponible le "+ new Date().next().format('dd/MM/yy')+" Le code la réservation est :"+reserv.code])
 	}
 	
 }

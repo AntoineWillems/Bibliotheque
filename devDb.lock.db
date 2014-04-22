@@ -1,4 +1,9 @@
 #FileLock
+<<<<<<< HEAD
 #Tue Apr 22 23:33:35 CEST 2014
 id=1458b5bbad7b8f3502f804c0ca65d4144804b00bb1e
+=======
+#Tue Apr 22 22:32:16 CEST 2014
+id=1458b23950635943e1f4fd6454f1ba8c0b1a9389bc9
+>>>>>>> origin/dev/abdoul
 method=file
