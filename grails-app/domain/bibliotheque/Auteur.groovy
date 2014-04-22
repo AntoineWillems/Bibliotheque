@@ -12,6 +12,8 @@ class Auteur {
 		livres fecth:"join"
 	}
 	
+	static transactional = true
+	
     static constraints = {
 		nom blank:true
 		prenom blank:true

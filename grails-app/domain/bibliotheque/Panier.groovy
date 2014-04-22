@@ -11,6 +11,8 @@ class Panier {
     static constraints = {
         livres nullable: true
     }
+	
+	static transactional = true
     String toString(){
         id
     }

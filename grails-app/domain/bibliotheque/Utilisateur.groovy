@@ -13,6 +13,8 @@ class Utilisateur {
             panier: Panier
     ]
 	
+	static transactional = true
+	
 	static hasMany = [reservations: Reservation]
 	
 	static mapping = {

@@ -9,6 +9,8 @@ class Livre {
                       typedocument:TypeDocument
     ]
 
+	static transactional = true
+	
     static constraints = {
         typedocument maxSize: 1
         titre blank: true

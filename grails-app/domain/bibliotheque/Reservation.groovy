@@ -12,6 +12,7 @@ class Reservation {
 		livres fecth:"join"
 	}
 	
+	static transactional = true
     static constraints = {
 		//livres nullable:true
 		code blank:true, nullable:true
