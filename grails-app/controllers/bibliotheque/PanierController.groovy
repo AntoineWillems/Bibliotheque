@@ -109,13 +109,7 @@ class PanierController {
 		
 		
 		livreList.each { livre ->
-			if(livre.getNombreExemplairesDisponible()==0){
-				/*
-				System.out.println("test")
-				newListLivre.removeById(livre.id)
-				*/
-			}
-			else {
+			if(livre.getNombreExemplairesDisponible()!=0){
 				livre.nombreExemplairesDisponible=livre.nombreExemplairesDisponible-1
 				newListLivre.add(livre)
 				
@@ -124,7 +118,9 @@ class PanierController {
 		}
 		
 		if(newListLivre.size() != livreList.size()){
-			redirect(action:"show", id:panierInstance.id)
+			panierInstance.livres = newListLivre
+			redirect(action:"show", id:panierInstance.id, params.error)
+			return
 		}
 		
 		panierInstance.setLivres(null)

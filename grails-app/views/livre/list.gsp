@@ -22,7 +22,7 @@
 			</g:if>
 			<fieldset class="form">
 			    <g:form action="list" method="GET">
-			        <div class="fieldcontain">
+			        <div class="display:inherit">
 			            <label for="query">Search :</label>
 			            <g:textField name="query" value="${params.query}"/>
 			            <label for="checkBoxTitre">Titre :</label>

@@ -24,7 +24,7 @@ class BootStrap {
         utilisateur.save(failOnError: true)
      
 	*/
-        f.toCsvReader(['separatorChar':'	', 'skipLines':1]).eachLine { tokens ->
+        f.toCsvReader(['separatorChar':'	',"charset":"iso-8859-1", 'skipLines':1]).eachLine { tokens ->
 
             livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)
 
