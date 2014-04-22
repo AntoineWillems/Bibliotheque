@@ -15,9 +15,13 @@ class LivreController {
 
 
     def list(Integer max) {
+		
         if (!session.user) {
             redirect(controller: "utilisateur", action: "login")
         } else {
+			if(params.commandeValide){
+				flash.message=params.commandeValide
+			}
             params.max = Math.min(max ?: 5, 100)
 
             def livreList = Livre.createCriteria().list(params) {
@@ -61,17 +65,21 @@ class LivreController {
     }
 
     def show(Long id) {
-        def livreInstance = Livre.get(id)
-        if (!livreInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'livre.label', default: 'Livre'), id])
-            redirect(action: "list")
-            return
-        }
-
-		Utilisateur user = Utilisateur.find(session.user)
-		Panier p = user.getPanier()
-		
-        [livreInstance: livreInstance,  panierInstance: p]
+		if (!session.user) {
+			redirect(controller: "utilisateur", action: "login")
+		} else {
+	        def livreInstance = Livre.get(id)
+	        if (!livreInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'livre.label', default: 'Livre'), id])
+	            redirect(action: "list")
+	            return
+	        }
+	
+			Utilisateur user = Utilisateur.find(session.user)
+			Panier p = user.getPanier()
+			
+	        [livreInstance: livreInstance,  panierInstance: p]
+		}
     }
 
 
@@ -87,10 +95,15 @@ class LivreController {
 		
 		Utilisateur user = Utilisateur.find(session.user)
 		Panier p = user.getPanier()
-		p.addToLivres(livreInstance)
+		if(livreInstance.nombreExemplairesDisponible!=0){
+			p.addToLivres(livreInstance)
+			
+		}else{
+			flash.message = "Livre indisponible"
+		}
 		
-		flash.message = message(code: 'default.commander.message', args: [message(code: 'livre.label', default: 'Livre'), id])
 		redirect(action: "list")
+		
 	}
 	
 	def commanderPanier(){

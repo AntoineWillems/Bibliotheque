@@ -33,7 +33,6 @@
 				</li>
 				</g:if>
 			</ol>
-			<input type="text" id="endDate" value="${formatDate(format:'dd/MM/yyyy')}" />
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${panierInstance?.id}" />

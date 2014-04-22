@@ -11,8 +11,12 @@ class PanierController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [panierInstanceList: Panier.list(params), panierInstanceTotal: Panier.count()]
+		if (!session.user) {
+			redirect(controller: "utilisateur", action: "login")
+		} else {
+	        params.max = Math.min(max ?: 10, 100)
+	        [panierInstanceList: Panier.list(params), panierInstanceTotal: Panier.count()]
+		}
     }
 
     def create() {
@@ -31,14 +35,22 @@ class PanierController {
     }
 
     def show(Long id) {
-        def panierInstance = Panier.get(id)
-        if (!panierInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'panier.label', default: 'Panier'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [panierInstance: panierInstance]
+		if (!session.user) {
+			redirect(controller: "utilisateur", action: "login")
+		} else {
+	        def panierInstance = Panier.get(id)
+			
+			if(params.erreur){
+				flash.message = params.erreur
+			}
+	        if (!panierInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'panier.label', default: 'Panier'), id])
+	            redirect(action: "list")
+	            return
+	        }
+	
+	        [panierInstance: panierInstance]
+		}
     }
 
     def edit(Long id) {
@@ -103,7 +115,8 @@ class PanierController {
 	def commanderPanier(Long id){
 		def panierInstance = Panier.get(id)
 		def livreList = panierInstance.getLivres()
-		def reserv = new Reservation().save()
+		def dateCourante = new Date().next()
+		def reserv = new Reservation(dateReservation:dateCourante.format('dd/MM/yy')).save()
 		
 		def newListLivre = []
 		
@@ -119,12 +132,21 @@ class PanierController {
 		
 		if(newListLivre.size() != livreList.size()){
 			panierInstance.livres = newListLivre
-			redirect(action:"show", id:panierInstance.id, params.error)
+			def livreList1 = panierInstance.getLivres()
+			livreList1.each { livre ->
+					livre.nombreExemplairesDisponible=livre.nombreExemplairesDisponible+1
+					
+			}
+			redirect(action:"show", id:panierInstance.id, params:[erreur:"Des livres n'etaient plus disponible, ils ont ete supprime"])
 			return
 		}
 		
 		panierInstance.setLivres(null)
-		redirect(controller: "livre", action:"list")
+		Utilisateur user = Utilisateur.find(session.user)
+		user.addToReservations(reserv)
+		
+		redirect(controller: "livre", action:"list", params:[commandeValide:"Votre livre sera disponible le "+ new Date().next().format('dd/MM/yy')])
 	}
+	
 }
 

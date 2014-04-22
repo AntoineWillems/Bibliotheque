@@ -15,18 +15,9 @@ class BootStrap {
         def listTypeDoc = []
         File f =new File("./bdd.csv")
 		
-		def user = new Utilisateur(login:"Antoine", password:"password", mail:"willemsan.antoine@gmail.com")
-		user.save()
-		/*
-        def panier = new Panier();
-        panier.save(failOnError: true)
-        def utilisateur  = new Utilisateur(version: "1",login: "admin",mail: "khadrygassama@gmail.com",panier:panier,password:"abdoul")
-        utilisateur.save(failOnError: true)
-     
-	*/
         f.toCsvReader(['separatorChar':'	',"charset":"iso-8859-1", 'skipLines':1]).eachLine { tokens ->
-
-            livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)
+			def nbLivres = (int) (Math.random()*5)
+            livre = new Livre(titre:tokens[3], nombreExemplaires:nbLivres, nombreExemplairesDisponible:nbLivres)
 
             def auteurExist = false
             listAuteur.each{ auteur1 ->

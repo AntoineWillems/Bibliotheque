@@ -31,7 +31,6 @@
 			            <g:checkBox name="checkBoxAuteur" value="${false}" />
 			            <label for="checkBoxTypeDoc">TypeDocument :</label>
 			            <g:checkBox name="checkBoxTypeDoc" value="${false}" />
-			            <g:link class="showCommande" action="showCommande" ><g:message code="default.button.commanderPanier.label" default="Voir ses commandes" /></g:link>
 			        </div>
 			    </g:form>
 			    
