@@ -5,7 +5,7 @@ class Reservation {
 	int code
 	String dateReservation
 	
-	static belongsTo = Livre
+	//static belongsTo = Livre
 	static hasMany = [livres:Livre]
 	
 	static mapping = {
@@ -13,8 +13,8 @@ class Reservation {
 	}
 	
     static constraints = {
-		livres nullable:true
+		//livres nullable:true
 		code blank:true, nullable:true
-		dateReservation blank:false
+		dateReservation blank:true, nullable:true
     }
 }

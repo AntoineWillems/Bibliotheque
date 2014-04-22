@@ -114,4 +114,12 @@ class LivreController {
         flash.message = message(code: 'default.commander.message', args: [message(code: 'livre.label', default: 'Livre'), id])
         redirect(action: "list")
     }
+	
+	def showCommande(){
+		
+		Utilisateur user = Utilisateur.find(session.user)
+		Reservation reserv = user.getReservations()
+		redirect(controller: "reservation", action:"list")
+		
+	}
 }

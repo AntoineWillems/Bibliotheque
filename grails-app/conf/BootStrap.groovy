@@ -1,25 +1,29 @@
 import bibliotheque.Auteur
 import bibliotheque.Livre
 import bibliotheque.Panier
+import bibliotheque.Reservation
 import bibliotheque.TypeDocument
 import bibliotheque.Utilisateur
 
 class BootStrap {
 
     def init = { servletContext ->
-        /*
+        
 		 Livre livre
         Auteur auteur
         def listAuteur = []
         def listTypeDoc = []
         File f =new File("./bdd.csv")
-
+		
+		def user = new Utilisateur(login:"Antoine", password:"password", mail:"willemsan.antoine@gmail.com")
+		user.save()
+		/*
         def panier = new Panier();
         panier.save(failOnError: true)
         def utilisateur  = new Utilisateur(version: "1",login: "admin",mail: "khadrygassama@gmail.com",panier:panier,password:"abdoul")
         utilisateur.save(failOnError: true)
      
-
+	*/
         f.toCsvReader(['separatorChar':'	', 'skipLines':1]).eachLine { tokens ->
 
             livre = new Livre(titre:tokens[3], nombreExemplaires:1, nombreExemplairesDisponible:1)
@@ -54,7 +58,7 @@ class BootStrap {
 
             livre.save()
         }
-        */
+        
     }
     def destroy = {
     }

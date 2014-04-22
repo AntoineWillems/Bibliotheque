@@ -32,12 +32,12 @@
 					
 				</li>
 				</g:if>
-			
 			</ol>
+			<input type="text" id="endDate" value="${formatDate(format:'dd/MM/yyyy')}" />
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${panierInstance?.id}" />
-					<g:link class="commandePanier" action="commanderPanier" id="${panierInstance?.id}"><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
+					<g:link class="commandePanier" action="commanderPanier" id="${panierInstance?.id}"><g:message code="default.button.commanderPanier.label" default="Reserver livres" /></g:link>
 				</fieldset>
 			</g:form>
 		</div>

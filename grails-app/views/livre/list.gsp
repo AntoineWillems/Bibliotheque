@@ -31,8 +31,10 @@
 			            <g:checkBox name="checkBoxAuteur" value="${false}" />
 			            <label for="checkBoxTypeDoc">TypeDocument :</label>
 			            <g:checkBox name="checkBoxTypeDoc" value="${false}" />
+			            <g:link class="showCommande" action="showCommande" ><g:message code="default.button.commanderPanier.label" default="Voir ses commandes" /></g:link>
 			        </div>
 			    </g:form>
+			    
 			</fieldset>
 			<table>
 				<thead>
@@ -98,7 +100,7 @@
 				</table>
 				<g:form>
 					<fieldset class="buttons">
-						 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="CommanderPanier" /></g:link>
+						 <g:link class="commandePanier" action="commanderPanier" ><g:message code="default.button.commanderPanier.label" default="Voir son panier" /></g:link>
 					</fieldset>
 			</g:form>
 			</div>

@@ -6,7 +6,6 @@ class Livre {
     int nombreExemplaires
     int nombreExemplairesDisponible
     static hasMany = [auteurs     : Auteur,
-                      reservations: Reservation,
                       typedocument:TypeDocument
     ]
 

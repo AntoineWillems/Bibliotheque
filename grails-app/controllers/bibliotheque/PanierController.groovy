@@ -101,57 +101,34 @@ class PanierController {
     }
 	
 	def commanderPanier(Long id){
-		/*
-		def panierInstance = Panier.get(id)
-		def listlivre = panierInstance.livres
-		def reservation = new Reservation(code:1, dateReservation: new Date())
-        listlivre.each {it->
-            if(it.nombreExemplairesDisponible==0){
-                flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'panier.label', default: 'Panier'), id])
-            }
-            else{
-                Livre.findByTitre(it.titre).setNombreExemplairesDisponible(Livre.findByTitre(it.titre).getNombreExemplairesDisponible()-1) 
-				Livre.findByTitre(it.titre).save()
-				Utilisateur user = Utilisateur.find(session.user)
-				
-				reservation.addToLivres(Livre.findByTitre(it.titre))
-                
-				user.addToReservations(reservation).save()
-            }
-
-        }
-		panierInstance.setLivres(null)
-        redirect(controller: "Reservation", action: "list")
-        
-        */
 		def panierInstance = Panier.get(id)
 		def livreList = panierInstance.getLivres()
-		def reserv = new Reservation(code:1, dateReservation: new Date()).save()
+		def reserv = new Reservation().save()
+		
+		def newListLivre = []
 		
 		
 		livreList.each { livre ->
-		if(livre.getNombreExemplairesDisponible()==0){
-			redirect(action:"show")
-		}
-		else {
-			def nombreExemplairesDisponible = livre.getNombreExemplairesDisponible()
-			livre.setNombreExemplairesDisponible(nombreExemplairesDisponible-1)
-			panierInstance.getLivres().remove(livre)
+			if(livre.getNombreExemplairesDisponible()==0){
+				/*
+				System.out.println("test")
+				newListLivre.removeById(livre.id)
+				*/
+			}
+			else {
+				livre.nombreExemplairesDisponible=livre.nombreExemplairesDisponible-1
+				newListLivre.add(livre)
+				
+			}
 			reserv.addToLivres(livre)
 		}
 		
-		
-		//reservation.addToLivres(livre).save()
+		if(newListLivre.size() != livreList.size()){
+			redirect(action:"show", id:panierInstance.id)
 		}
 		
-		
-		
-		//Voir s'il ne faut pas mettre un each pour la liste
-		
-		
-		// Ajouter livre dans la reservation.
-		
-		//redirect(controller: "reservation", action:"list")
+		panierInstance.setLivres(null)
+		redirect(controller: "livre", action:"list")
 	}
 }
 
